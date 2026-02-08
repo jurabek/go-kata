@@ -18,19 +18,19 @@ Build an **HTTP Server with Background Worker** that must:
 Implement `Server` struct with `Start() error` and `Stop(ctx context.Context) error` methods.
 
 ### 1. Functional Requirements
-* [ ] HTTP server on configurable port with request timeout
-* [ ] Worker pool (configurable size) processes requests via channel
-* [ ] Background cache warmer ticks every 30s (use `time.Ticker`)
-* [ ] Database connection pool (mock with `net.Conn`)
-* [ ] SIGTERM/SIGINT triggers graceful shutdown
-* [ ] Shutdown completes within deadline or forces exit
+* [x] HTTP server on configurable port with request timeout
+* [x] Worker pool (configurable size) processes requests via channel
+* [x] Background cache warmer ticks every 30s (use `time.Ticker`)
+* [x] Database connection pool (mock with `net.Conn`)
+* [x] SIGTERM/SIGINT triggers graceful shutdown
+* [x] Shutdown completes within deadline or forces exit
 
 ### 2. The "Idiomatic" Constraints (Pass/Fail Criteria)
-* [ ] **Single Context Tree**: Root `context.Context` passed to `Start()`, canceled on shutdown
-* [ ] **Channel Coordination**: Use `chan struct{}` for worker pool shutdown, not boolean flags
-* [ ] **Proper Ticker Cleanup**: `defer ticker.Stop()` with select in goroutine
-* [ ] **Dependency Order**: Shutdown in reverse order (stop accepting → drain workers → stop warmer → close DB)
-* [ ] **No `os.Exit()` in business logic**: Shutdown should be testable without process termination
+* [x] **Single Context Tree**: Root `context.Context` passed to `Start()`, canceled on shutdown
+* [x] **Channel Coordination**: Use `chan struct{}` for worker pool shutdown, not boolean flags
+* [x] **Proper Ticker Cleanup**: `defer ticker.Stop()` with select in goroutine
+* [x] **Dependency Order**: Shutdown in reverse order (stop accepting → drain workers → stop warmer → close DB)
+* [x] **No `os.Exit()` in business logic**: Shutdown should be testable without process termination
 
 ## 🧪 Self-Correction (Test Yourself)
 1. **The Sudden Death Test**:
